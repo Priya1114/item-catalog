@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+{% block content %}
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <center>
+        <h1 style="color: white;margin: auto;">{{item.title}}</h1>
+        </center>
+    </div>
+    <div class="panel-body">{{ item.description }}</div>
+</div>
+<div class="container">
+    <center>
+        <button type="button" class="btn btn-default"><a href="{{url_for('editItem', name = item.catalog.name, itemName = item.title)}}">Edit</a></button>
+        <button type="button" class="btn btn-default delete">
+            <a href="{{url_for('deleteItem', name = item.catalog.name, itemName = item.title)}}">Delete</a>
+        </button>
+    </center>
+</div>
+
+{% endblock %}

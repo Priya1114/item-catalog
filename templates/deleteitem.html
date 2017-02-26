@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+{% block content %}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+    <h1 style="color: white;margin: auto;">Are you sure you want to delete {{catalogParticular.title}}</h1>
+    </div>
+    <div class="panel-body">
+        <form method="POST">
+            <input type="submit" value="Delete">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

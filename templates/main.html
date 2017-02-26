@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="//apis.google.com/js/platform.js?onload=start"> </script>
+        <style type="text/css">
+            * {
+                font-family: "Helvetica Neue Bold", Roboto, Helvetica, Arial, sans-serif;
+                font-weight: 700;
+            }
+            body {
+                background-image: url("https://images4.alphacoders.com/307/30716.jpg");
+                background-attachment: fixed;
+                background-size: cover;
+            }
+            h1 {
+                font-family: "Helvetica Neue Light", Roboto, Helvetica, Arial, sans-serif;
+                font-size: 50px;
+                color: #51453B;
+                line-height: 60px;
+                font-weight: 300;
+            }
+
+            h2 {
+                font-size: 24px;
+                color: #42C3C9;
+                line-height: 29px;
+            }
+
+            h3 {
+                font-size: 18px;
+                color: #4A4A4A;
+                line-height: 23px;
+            }
+             p {
+                font-family: "Helvetica Neue", Roboto, Helvetica, Arial, sans-serif;
+                font-size: 16px;
+                color: #7B7573;
+                line-height: 24px;
+                font-weight: 400;
+             }
+
+             strong {
+                font-size: 16px;
+                color: #7B7573;
+                line-height: 24px;
+             }
+
+             a {
+                color: #0093B9;
+                line-height: 17px;
+             }
+            .padding-top {
+                padding-top: 30px;
+            }
+            .padding-bottom {
+                padding-bottom: 30px;
+            }
+            .margin-right {
+                margin-right: 30px;
+            }
+            .padding-none {
+                padding: 0;
+            }
+            .btn {
+                padding: 20px;
+                margin: 0;
+                border-color: #42C3C9;
+                border-width: 2px;
+                color: #9FB80A;
+            }
+            .btn:hover {
+                border-color: #9FB80A;
+            }
+            .btn.delete {
+                border-color: #aaaaaa;
+                color: #aaaaaa;
+            }
+            .btn.delete:hover {
+                border-color: #aaaaaa;
+                background-color: #D9534F;
+            }
+            .glyphicon {
+                margin-right: 10px;
+            }
+
+            .divider {
+                height: 15px;
+            }
+            .divider.blue {
+                background-color: #42C3C9;
+            }
+            input {
+                width: 100%;
+                border-radius: 4px;
+            }
+            select {
+                width: 100%;
+                border-radius: 4px;
+            }
+            kbd {
+                font-size: 30px;
+            }
+            .banner h1 {
+                margin: 45px 0;
+            }
+            .item-list {
+                background-color: #F0F0F0;
+                padding: 20px;
+            }
+             .item-list:hover {
+                background-color: #42C3C9;
+                padding: 20px;
+            }
+
+            .panel-primary {
+                max-width: 500px;
+                margin: auto;
+            }
+            .panel-primary>.panel-heading {
+                background-color: #42C3C9;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="row divider blue">
+            <div class="col-md-12"></div>
+        </div>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-th-list"></span>  Item Catalog</a>
+                </div>
+                {% if 'username' in session %}
+                <ul class="nav navbar-nav">
+                    <li><a href="{{url_for('addItem')}}">Add Item</a></li>
+                </ul>
+                {% endif %}
+                <ul class="nav navbar-nav navbar-right">
+                    {% if 'username' not in session %}
+                    <li>
+                        <a href="{{url_for('showLogin')}}"><span class="glyphicon glyphicon-user"></span>Click Here to Log in</a>
+                    <li>
+                    {%else%}
+                    <li>
+                        <a href="{{url_for('gdisconnect')}}"><span class="glyphicon glyphicon-log-in">Disconnect</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    <div class="container">
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>
