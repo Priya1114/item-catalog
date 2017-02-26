@@ -302,10 +302,8 @@ def editItem(name, itemName):
     catalogParticular = \
         session.query(CatalogItem).filter_by(title=itemName,
                                              category=name).one()
-    creator = getUserInfo(catalogParticular.user_id)
-
-    if creator.email != login_session['email']:
-        flash('You are not authorised to edit the item u did not create!'
+    if catalogParticular.user_id != login_session['user_id']:
+        flash('You are not authorised to edit %s' % catalogParticular.title
               )
         return redirect(url_for('showCatalog'))
 
@@ -355,10 +353,9 @@ def deleteItem(name, itemName):
     catalogParticular = \
         session.query(CatalogItem).filter_by(title=itemName,
                                              category=name).one()
-    creator = getUserInfo(catalogParticular.user_id)
 
-    if creator.email != login_session['email']:
-        flash('You are not authorised to Delete the item u did not create!'
+    if catalogParticular.user_id != login_session['user_id']:
+        flash('You are not authorised to delete %s' % catalogParticular.title
               )
         return redirect(url_for('showCatalog'))
 
